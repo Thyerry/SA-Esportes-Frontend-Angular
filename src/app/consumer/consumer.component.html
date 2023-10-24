@@ -1,0 +1,24 @@
+<div class="container mt-5">
+  <h1 class="display-4 text-center">Consumidor</h1>
+  <div class="row mt-3">
+    <div class="col-md-6 offset-md-3">
+      <div
+        *ngFor="let message of messageService.messages"
+        class="alert"
+        [ngClass]="{
+          'alert-success': message.isValid,
+          'alert-danger': !message.isValid
+        }"
+      >
+        <p class="text-center" *ngIf="message.isValid">Mensagem válida</p>
+        <p class="text-center" *ngIf="!message.isValid">Mensagem inválida</p>
+        <p class="text-center" style="font-weight: bold">
+          {{ message.content }}
+        </p>
+        <ul *ngIf="!message.isValid">
+          <li *ngFor="let error of message.errorList">{{ error }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
